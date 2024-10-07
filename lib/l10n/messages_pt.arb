@@ -1,0 +1,12 @@
+{
+  "quotesBottomNavigationBarItemLabel": "Frases",
+  "profileBottomNavigationBarItemLabel": "Perfil",
+  "signedInUserGreeting": "Olá, {username}!",
+  "@signedInUserGreeting": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  }
+}
