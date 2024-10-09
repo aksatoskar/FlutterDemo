@@ -135,3 +135,19 @@ bool threeNumSum(List<int> nums, int target) {
   }
   return false;
 }
+
+
+class Area{
+  int height;
+  int width;
+  int area;
+
+  Area._internal(this.height, this.width): area = height * width;
+
+  factory Area.rectangle(int height, int width){
+    if (height < 0 || width < 0) {
+      throw Exception('Illegal argument');
+    }
+    return Area._internal(height, width);
+    }
+}

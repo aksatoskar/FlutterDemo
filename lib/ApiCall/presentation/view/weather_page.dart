@@ -46,11 +46,15 @@ class _WeatherState extends State<WeatherPage> {
         builder: (context, state) {
           final temp = state.weather.temperature;
           final windSpeed = state.weather.windSpeed;
+          final desc = (state.weather.weatherConditionList.isNotEmpty)
+              ? state.weather.weatherConditionList[0].description
+              : '';
           return Container(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             child: (
                 Column(
                   children: [
-                    Text('Weather temp is $temp and windspeed is $windSpeed'),
+                    Text('Weather temp is $temp and windspeed is $windSpeed and it is a $desc'),
                     if (state.isLoading)
                       const SizedBox(
                         width: 24,

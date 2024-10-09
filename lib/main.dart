@@ -1,3 +1,4 @@
+import 'package:firstflutterapp/stream/CounterStream.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -5,6 +6,7 @@ import 'Navigation/navigation_main.dart';
 import 'Navigation/step_one_1.dart';
 import 'l10n/app_localizations.dart';
 import 'login_screen.dart';
+import 'main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const NavigationMain());
+        home: MainPage());
   }
 
   Size getWindowSize(BuildContext context) {

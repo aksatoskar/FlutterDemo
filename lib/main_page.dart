@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:firstflutterapp/ApiCall/data/repository/api_service.dart';
+import 'package:firstflutterapp/ApiCall/data/repository/network_weather_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,7 +28,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => AppRepository(inMemoryWeatherRepository: InMemoryWeatherRepository()),
+      create: (context) => AppRepository(inMemoryWeatherRepository: InMemoryWeatherRepository(), networkWeatherRepository: NetworkWeatherRepository(apiService: ApiService())),
       child: BlocProvider(
         create: (context) => WeatherBloc(appRepository: context.read()),
         child: const Scaffold(

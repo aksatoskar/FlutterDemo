@@ -16,12 +16,12 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc({required AppRepository appRepository})
       : _appRepository = appRepository,
         super(
-        WeatherState(weather: Weather(temperature: '-', windSpeed: -1), isLoading: false, error: '')
+        WeatherState(weather: Weather(temperature: 0, windSpeed: 0, weatherConditionList: []), isLoading: false, error: '')
       ) {
     on<LoadWeather>(_onLoad);
   }
 
-  FutureOr<void> _onLoad(LoadWeather event, Emitter<WeatherState> emit) async {
+  Future<void> _onLoad(LoadWeather event, Emitter<WeatherState> emit) async {
     try {
      emit(state.copyWith(isLoading: true));
 
