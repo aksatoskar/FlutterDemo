@@ -1,7 +1,9 @@
 import 'dart:collection';
 
 import 'package:firstflutterapp/ApiCall/data/repository/api_service.dart';
+import 'package:firstflutterapp/ApiCall/data/repository/network_comment_repository.dart';
 import 'package:firstflutterapp/ApiCall/data/repository/network_weather_repository.dart';
+import 'package:firstflutterapp/ApiCall/presentation/comment/bloc/comment_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,16 +30,22 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => AppRepository(inMemoryWeatherRepository: InMemoryWeatherRepository(), networkWeatherRepository: NetworkWeatherRepository(apiService: ApiService())),
-      child: BlocProvider(
-        create: (context) => WeatherBloc(appRepository: context.read()),
+      create: (context) => AppRepository(inMemoryWeatherRepository: InMemoryWeatherRepository(), networkWeatherRepository: NetworkWeatherRepository(apiService: ApiService()), networkCommentRepository: NetworkCommentRepository(apiService: ApiService())),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => WeatherBloc(appRepository: context.read<AppRepository>()),
+          ),
+          BlocProvider(
+            create: (context) => CommentCubit(appRepository: context.read<AppRepository>()), // Assuming your CommentCubit uses the networkCommentRepository
+          )
+        ],
         child: const Scaffold(
           body: WeatherPage(),
         ),
       ),
     );
   }
-
 }
 
 
